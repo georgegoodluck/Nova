@@ -1,9 +1,22 @@
-import React from 'react'
+import Link from "next/link";
+import Image from "next/image";
 
-const SideBar = () => {
+const Sidebar = ({ user }: SiderbarProps) => {
   return (
-    <div>SideBar</div>
-  )
-}
+    <section className="sidebar">
+      <nav className="flex flex-col gap-4">
+        <Link href="/" className="mb-12 cursor-pointer items-center gap-2">
+          <Image
+            src="/icons/logo.svg"
+            width={34}
+            height={34}
+            alt="Nova Logo"
+            className="size-[24px] max-xl:size-14"
+          ></Image>
+        </Link>
+      </nav>
+    </section>
+  );
+};
 
-export default SideBar
+export default Sidebar;
