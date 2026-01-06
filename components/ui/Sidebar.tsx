@@ -10,7 +10,7 @@ const Sidebar = ({ user }: SiderbarProps) => {
   return (
     <section className="sidebar">
       <nav className="flex flex-col gap-4">
-        <Link href="/" className="mb-12 cursor-pointer items-center gap-2">
+        <Link href="/" className="mb-12 cursor-pointer flex items-center gap-2">
           <Image
             src="/icons/logo.svg"
             width={34}
@@ -18,7 +18,7 @@ const Sidebar = ({ user }: SiderbarProps) => {
             alt="Nova Logo"
             className="size-[24px] max-xl:size-14"
           ></Image>
-          <h1 className="sidebar-log">Nova</h1>
+          <h1 className="sidebar-log text-2xl">Nova</h1>
         </Link>
 
         {sidebarLinks.map((item) => {
@@ -30,7 +30,18 @@ const Sidebar = ({ user }: SiderbarProps) => {
               key={item.label}
               className={cn("sidebar-link", { "bg-bank-gradient": isActive })}
             >
+              <div className="relative size-6">
+                <Image
+                  src={item.imgURL}
+                  alt={item.label}
+                  fill
+                  className={cn({ "bightness-[3] invert-0": isActive })}
+                ></Image>
+              </div>
+
+              <p className={cn("sidebar-label", { "text-white": isActive })}>
               {item.label}
+              </p>
             </Link>
           );
         })}
