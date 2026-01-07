@@ -13,12 +13,12 @@ const Sidebar = ({ user }: SiderbarProps) => {
         <Link href="/" className="mb-12 cursor-pointer flex items-center gap-2">
           <Image
             src="/icons/logo.svg"
-            width={34}
-            height={34}
+            width={44}
+            height={44}
             alt="Nova Logo"
-            className="size-[24px] max-xl:size-14"
+            className="size-[44px] max-xl:size-10"
           ></Image>
-          <h1 className="sidebar-log text-2xl">Nova</h1>
+          <h1 className="sidebar-logo text-5xl">Nova</h1>
         </Link>
 
         {sidebarLinks.map((item) => {
@@ -35,17 +35,22 @@ const Sidebar = ({ user }: SiderbarProps) => {
                   src={item.imgURL}
                   alt={item.label}
                   fill
-                  className={cn({ "bightness-[3] invert-0": isActive })}
+                  className={cn({ "brightness-[3] invert-0": isActive })}
                 ></Image>
               </div>
-
               <p className={cn("sidebar-label", { "text-white": isActive })}>
-              {item.label}
+                {item.label}
               </p>
             </Link>
           );
         })}
+
+        
+        USER
       </nav>
+
+      FOOTER
+      
     </section>
   );
 };
