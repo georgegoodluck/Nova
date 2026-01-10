@@ -2,6 +2,12 @@ import Sidebar from "@/components/Sidebar";
 import Image from "next/image";
 import MobileNav from "@/components/MobileNav";
 
+/**
+ * Provides the application shell with a persistent sidebar and header, and renders the given children as page content.
+ *
+ * @param children - The content to display within the layout's main content area
+ * @returns The root JSX element containing the sidebar, header (logo and mobile navigation), and the supplied children
+ */
 export default function RootLayout({
   children,
 }: Readonly<{
