@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
+import { z } from "zod";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -15,3 +16,9 @@ export const formatAmount = (amount: number): string => {
 
   return formatter.format(amount);
 };
+
+
+export const authFormSchema = z.object({
+  email: z.email(),
+  password: z.string().min(6),
+});
