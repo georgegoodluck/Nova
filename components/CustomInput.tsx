@@ -17,9 +17,10 @@ interface CustomInput {
     name: FieldPath<z.infer<typeof FormSchema>>,
     label: string,
     placeholder: string;
+    type?: React.HTMLInputTypeAttribute;
 }
 
-const CustomInput = ({ control, name, label, placeholder }: CustomInput) => {
+const CustomInput = ({ control, name, label, placeholder, type = "text" }: CustomInput) => {
     return (
         <FormField control={control}
             name={name}
@@ -32,7 +33,8 @@ const CustomInput = ({ control, name, label, placeholder }: CustomInput) => {
                         <FormControl>
                             <Input
                                 placeholder={placeholder}
-                                className='input-class' type='password'
+                                className='input-class'
+                                type={type}
                                 {...field}
                             />
                         </FormControl>
