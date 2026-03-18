@@ -34,11 +34,10 @@ export const authFormSchema = (type: string) =>
             .string()
             .min(3, "Address must be at least 3 characters")
             .max(50, "Address is too long"),
-    // // Adding city as it is commonly used in these forms
-    // city:
-    //   type === "sign-in"
-    //     ? z.string().optional()
-    //     : z.string().min(3, "City must be at least 3 characters").max(50),
+    city:
+      type === "sign-in"
+        ? z.string().optional()
+        : z.string().min(3, "City must be at least 3 characters").max(50),
     state:
       type === "sign-in"
         ? z.string().optional()

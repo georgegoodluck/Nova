@@ -20,9 +20,11 @@ import { Input } from "@/components/ui/input"
 import CustomInput from './CustomInput';
 import { authFormSchema } from '@/lib/utils';
 import { Loader2 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 
 const AuthForm = ({ type }: { type: string }) => {
+  const router = useRouter();
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -37,6 +39,7 @@ const AuthForm = ({ type }: { type: string }) => {
       firstName: "",
       lastName: "",
       address: "",
+      city: "",
       state: "",
       postalCode: "",
       ssn: "",
@@ -44,13 +47,33 @@ const AuthForm = ({ type }: { type: string }) => {
     },
   })
 
-  // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof FormSchema>) {
+  // 2. Define the submit handler.
+  const onSubmit = async (data: z.infer<typeof FormSchema>) => {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     setIsLoading(true);
-    console.log(values);
-    setIsLoading(false);
+
+    try {
+      // Sign up with Appwrite and create plaid link token
+      if (type === "sign-up") {
+        // const newUser = await signUp(data);
+
+        // setUser(newUser);
+      }
+
+      if (type === "sign-in") {
+        // const response = await SignIn({
+        //   email: data.email,
+        //   password: data.password,
+        // })
+
+        // if (response) router.push('/');
+      }
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -99,29 +122,32 @@ const AuthForm = ({ type }: { type: string }) => {
                     control={form.control} name="address" label="Address" placeholder="Enter your address"
                   />
                   <div className="flex gap-4">
-                  <CustomInput
-                    control={form.control} name="state" label="State" placeholder="Example: FC"
-                  />
-                  <CustomInput
-                    control={form.control} name="postalCode" label="Postal Code" placeholder="Example: 10010"
-                  />
+                    <CustomInput
+                      control={form.control} name="city" label="City" placeholder="Example: Ikeja"
+                    />
+                    <CustomInput
+                      control={form.control} name="state" label="State" placeholder="Example: OY"
+                    />
+                    <CustomInput
+                      control={form.control} name="postalCode" label="Postal Code" placeholder="Example: 10010"
+                    />
                   </div>
                   <div className="flex gap-4">
-                  <CustomInput
-                    control={form.control} name="dateOfBirth" label="Date of Birth" placeholder="Example: YYYY-MM-DD"
-                  />
-                  <CustomInput
-                    control={form.control} name="ssn" label="SSN" placeholder="Example: 1234"
-                  />
+                    <CustomInput
+                      control={form.control} name="dateOfBirth" label="Date of Birth" placeholder="Example: YYYY-MM-DD"
+                    />
+                    <CustomInput
+                      control={form.control} name="ssn" label="SSN" placeholder="Example: 1234"
+                    />
                   </div>
                 </>
               )}
 
               <CustomInput
-                control={form.control} name="email" label="Email" placeholder="Enter your email"
+                control={form.control} name="email" label="Email" placeholder="Enter your email" type="email"
               />
               <CustomInput
-                control={form.control} name="password" label="Password" placeholder="Enter your password"
+                control={form.control} name="password" label="Password" placeholder="Enter your password" type="password"
               />
               <div className="flex flex-col gap-4">
                 <Button type="submit" disabled={isLoading} className='form-btn'>
